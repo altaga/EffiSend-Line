@@ -32,7 +32,7 @@ By bringing **Face Payments to LINE**, EffiSend bridges the gap between Web3 inn
 
 <hr>
 
-- **WEB DAPP:** [LINK](https://liff.line.me/2008048994-LZJ5wpAN)
+- **MINI DAPP:** [LINK](https://liff.line.me/2008048994-LZJ5wpAN)
 
 <hr>
 
