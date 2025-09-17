@@ -60,9 +60,6 @@ We've designed EffiSend with a modern Web3 architecture that prioritizes what ma
 
   - [**USDT**](https://tether.to/)
     We chose USDT as our primary currency because stability matters when you're dealing with real money. No one wants to worry about price volatility when splitting a dinner bill or earning rewards for platform activity.
-    
-    > **Future Vision: KRW Stablecoin Integration**  
-    > While EffiSend currently operates with USDT, Kaia's roadmap includes the implementation of Korean Won (KRW) stablecoins. Through Kakao's involvement in Kaia's governance council and recent trademark registrations for "KRWGlobal," "KRWGL," "KRWKaia," and "KaKRW," the platform is positioning to integrate won-pegged tokens that could serve Kakao's 49+ million monthly active users across South Korea. This would enable seamless DeFi integration within mobile apps used nationwide, bringing decentralized finance to mainstream adoption while maintaining the stability benefits users expect from fiat-backed currencies.
 
   - [**Langchain (AI Agent)**](https://www.langchain.com/)
     The brain behind DeSmond, our conversational AI assistant. Instead of navigating complex interfaces, users can simply tell DeSmond what they want to do—"send $50 to Alice" or "check my balance"—and it handles the rest.
@@ -225,8 +222,6 @@ All technical implementations for this module are included here.
 
 We've streamlined the payment experience around **USDT** because predictable value matters in everyday transactions. Whether you're a merchant accepting payments or a customer making purchases, you shouldn't have to worry about price swings affecting your transaction.
 
-*Looking ahead, EffiSend is designed to seamlessly integrate with Kaia's planned KRW stablecoins, which would enable native Korean Won transactions for the millions of users in Kakao's ecosystem, making crypto payments even more accessible to mainstream users in South Korea.*
-
 - The merchant or user initiates a payment request. Afterward, the customer’s QR code—similar to Alipay—or facial recognition is scanned. Once verified, the system displays the available tokens, allowing the user to proceed with the payment.
 
   <img src="./Images/pay1.png" width="32%"/> <img src="./Images/pay2.png" width="32%"/> <img src="./Images/pay3.png" width="32%"/>
@@ -271,7 +266,7 @@ All technical implementations for this module are included here.
 
 EffiSend’s identity-based rewards model encourages platform engagement. Users earn **USDT** tokens for completing a certain number of transactions or actions, fostering a vibrant and active community.
 
-*As Kaia develops its KRW stablecoin infrastructure, future versions of EffiSend will offer rewards in Korean Won stablecoins, providing even more relevant value to users in the South Korean market.*
+
 
 <img src="./Images/faceid2.png" width="32%"/> <img src="./Images/faceid3.png" width="32%"/> <img src="./Images/rew4.png" width="32%"/>
 
