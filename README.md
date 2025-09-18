@@ -40,7 +40,7 @@ By bringing **Face Payments to LINE**, EffiSend bridges the gap between Web3 inn
 
 <hr>
 
-- **VIDEO DEMO:** [LINK](Pending.....)
+- **VIDEO DEMO:** [LINK](https://www.youtube.com/watch?v=ipT9MxahQEk)
 
 ## ⚙️ System Architecture & Tech Stack
 
