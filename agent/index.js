@@ -15,7 +15,7 @@ import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod"; // Assuming zod is used for schema validation based on the `z.object` usage
 import fs from "fs";
-import { tokens } from "./constants.js";
+import { tokens, stakeABI } from "./constants.js";
 import { formatUnits, Contract } from "ethers";
 import { DynamicProvider, FallbackStrategy } from "ethers-dynamic-provider";
 const abiPath =
@@ -29,7 +29,7 @@ const rpcs = [
   "https://kaia.blockpi.network/v1/rpc/public",
   "https://klaytn.api.onfinality.io/public",
   "https://go.getblock.io/d7094dbd80ab474ba7042603fe912332",
-]
+];
 
 const provider = new DynamicProvider(rpcs, {
   strategy: new FallbackStrategy(),
@@ -97,6 +97,70 @@ const llm = new ChatOllama({
   numCtx: 1024 * 25,
 });
 
+// Get Yield Farm Balance
+const getDepositedBalance = tool(
+  async ({}, { configurable: { address } }) => {
+    const contract = new Contract(
+      "0xEBB9e25b4394378a1981C56b2762C7380Cd75dB9",
+      stakeABI,
+      provider
+    );
+    const balance = await contract.getStaked(address);
+    const finalBalance = epsilonRound(formatUnits(balance, 18));
+    return JSON.stringify({
+      status: "success",
+      message: "Deposited balance retrieved successfully from the Kaia Mainnet yield contract.",
+      balance: `${finalBalance} ${"KAIA"}`,
+    });
+  },
+  {
+    name: "get_yield_balance",
+    description: `Retrieves the user's currently deposited KAIA balance from the Kaia Mainnet yield farm contract.
+Use this tool when the user explicitly requests their active deposited KAIA holdings.`,
+    schema: z.object({}),
+  }
+);
+
+// Get Pending Rewards Balance
+const getRewardsBalance = tool(
+  async ({}, { configurable: { address } }) => {
+    const contract = new Contract(
+      "0xEBB9e25b4394378a1981C56b2762C7380Cd75dB9",
+      stakeABI,
+      provider
+    );
+    const balance = await contract.getPendingRewards(address);
+    const finalBalance = epsilonRound(formatUnits(balance, 18));
+    return JSON.stringify({
+      status: "success",
+      message: "Pending rewards balance retrieved successfully. This is the amount of DES (DeSmond Token) that the user has yet to claim from the Kaia Mainnet yield farm contract.",
+      balance: `${finalBalance} ${"DES (DeSmond Token)"}`,
+    });
+  },
+  {
+    name: "get_pending_rewards",
+    description: `Retrieves the user's pending DES token (DeSmond Token) rewards from the Kaia Mainnet yield farm contract. Use this tool when the user explicitly asks for their unclaimed pending rewards on the yield farm contract. This query is specific to DES (DeSmond Token) as the designated rewards token from the yield farm contract.`,
+    schema: z.object({}),
+  }
+);
+
+// Get Yield information
+
+const getYieldInfo = tool(
+  async ({}, { configurable: {} }) => {
+    console.log("Get Yield Tool invoked with token");
+    return JSON.stringify({
+      status: "success",
+      message: "Yield farm information retrieved successfully.",
+    });
+  },
+  {
+    name: "get_yield_info",
+    description: `This tool retrieves the yield farm information from the Kaia Mainnet yield farm contract. For example, "Hi Desmond, do you have any Yield features?", "Hi Desmond, do you have any Yield features?", Use this tool when the user explicitly asks for their yield farm information or capabilities on the yield farm contract.`,
+    schema: z.object({}),
+  }
+);
+
 // Get Tokens Balance
 const getBalanceTokens = tool(
   async ({ token }, { configurable: { address } }) => {
@@ -137,13 +201,107 @@ const getBalanceTokens = tool(
     name: "get_balance_kaia",
     description: `This tool retrieves the user's current X token balance, where X is any token on Kaia Mainnet. Use this when the user specifically asks for their token balance, 'token', "balance", or general wallet funds on Kaia Mainnet.
       
-      This is the list of available tokens: ${tokens.map(
-        (token) => `${token.symbol}, `
-      )}
+This is the list of available tokens: ${tokens.map(
+      (token) => `${token.symbol}, `
+    )}
       `,
     schema: z.object({
       token: z.string(),
     }),
+  }
+);
+
+// Yield Farm Kaia Tokens
+const yieldKaia = tool(
+  async ({ amount }, { configurable: { user } }) => {
+    const response = await fetchURL(process.env.STAKE_API, {
+      user,
+      amount,
+    });
+    if (response === null) {
+      return JSON.stringify({
+        status: "error",
+        message: "Transaction failed.",
+      });
+    }
+    const { hash } = response;
+    return JSON.stringify({
+      message:
+        "Deposit transaction has been successfully submitted to the blockchain network and is now confirmed on Kaia Mainnet.",
+      status: "success",
+      transaction: hash,
+    });
+  },
+  {
+    name: "yield_kaia",
+    description: `Facilitates depositing of a specified amount of KAIA tokens on the Kaia Mainnet.
+Generates the transaction data required for the user to sign and submit to the yield farm contract.
+Activate this tool when the user explicitly requests to deposit KAIA, or uses terms like "deposit," "yield," "lock," or "Kaia Mainnet" in relation to their wallet activity.`,
+    schema: z.object({
+      amount: z.string(),
+    }),
+  }
+);
+
+// Unyield Farm Kaia Tokens
+
+const unyieldKaia = tool(
+  async ({ amount }, { configurable: { user } }) => {
+    const response = await fetchURL(process.env.UNSTAKE_API, {
+      user,
+      amount,
+    });
+    if (response === null) {
+      return JSON.stringify({
+        status: "error",
+        message: "withdraw transaction failed.",
+      });
+    }
+    const { hash } = response;
+    return JSON.stringify({
+      message:
+        "Withdrawal transaction has been successfully submitted to the blockchain network and is now confirmed on Kaia Mainnet.",
+      status: "success",
+      transaction: hash,
+    });
+  },
+  {
+    name: "withdraw_kaia",
+    description: `Facilitates withdrawing of a specified amount of KAIA tokens from the Kaia Mainnet yield farm contract.  
+Generates the transaction data required for the user to sign and submit.  
+Activate this tool when the user explicitly requests to withdraw KAIA, or uses terms like "withdraw," "release," or "Kaia Mainnet" in relation to their wallet activity.`,
+    schema: z.object({
+      amount: z.string(),
+    }),
+  }
+);
+
+// Withdraw Rewards
+
+const withdrawRewards = tool(
+  async (_, { configurable: { user } }) => {
+    const response = await fetchURL(process.env.WITHDRAW_API, {
+      user,
+    });
+    if (response === null) {
+      return JSON.stringify({
+        status: "error",
+        message: "Reward withdrawal failed.",
+      });
+    }
+    const { hash } = response;
+    return JSON.stringify({
+      message: "Withdrawal transaction has been successfully submitted to the blockchain network and is now confirmed on Kaia Mainnet.",
+      status: "success",
+      transaction: hash,
+    });
+  },
+  {
+    name: "withdraw_rewards",
+    description: `Retrieves and initiates withdrawal of the user's pending DES token rewards from the Kaia Mainnet yield farm contract.  
+Generates the transaction data required for the user to sign and claim their rewards.  
+Activate this tool when the user explicitly requests to withdraw or claim yield rewards.`,
+    schema: z.object({}),
   }
 );
 
@@ -173,7 +331,7 @@ const transferTokens = tool(
     name: "transfer_tokens",
     description: `This tool facilitates Tokens transfers on the Kaia Mainnet. It generates the transaction data for the user to sign. It activates whenever the user explicitly requests to send Tokens, initiates a transaction, or mentions terms like 'transfer,' 'Tokens,' or 'Kaia Mainnet' in relation to their wallet activity.
 
-    This is the list of available tokens: ${tokens.map(
+This is the list of available tokens: ${tokens.map(
       (token) => `${token.symbol}, `
     )}
       `,
@@ -211,9 +369,9 @@ const swapTokens = tool(
     name: "swap_tokens",
     description: `This tool facilitates token swaps on the Kaia Mainnet. It generates transaction data for the user to sign. It activates whenever the user explicitly requests to swap tokens, initiates a transaction, or mentions terms like 'swap,' 'token,' or 'Kaia Mainnet' in relation to their wallet activity.\n\nThe tool receives a token symbol like USDT, KAIA, etc...
       
-      This is the list of available tokens: ${tokens.map(
-        (token) => `${token.symbol}, `
-      )}
+This is the list of available tokens: ${tokens.map(
+      (token) => `${token.symbol}, `
+    )}
     `,
     schema: z.object({
       amount: z.string(),
@@ -341,10 +499,16 @@ const all_api_tools = [
   // webSearch,
   listOfTools,
   getBalanceTokens,
+  getYieldInfo,
   fallbackTool,
   transferTokens,
   fundKastCard,
   swapTokens,
+  getDepositedBalance,
+  getRewardsBalance,
+  yieldKaia,
+  unyieldKaia,
+  withdrawRewards,
 ];
 
 const tools_node = new ToolNode(all_api_tools);
@@ -434,3 +598,26 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`DeSmond API listening at http://localhost:${port}`);
 });
+
+function checkHealth() {
+  fetch(process.env.PERMANENT_URL, {
+    headers: {
+      "x-api-key": process.env.AI_URL_API_KEY,
+    },
+  }).then(async (response) => {
+    console.log("API health result:");
+    if (response.ok) {
+      console.log("API health ok");
+      const result = await llm.invoke("Hi there!");
+      console.log("Agent health result:");
+      console.log(result.content);
+    } else {
+      console.error("API health error");
+    }
+  });
+}
+
+checkHealth();
+setInterval(() => {
+  checkHealth();
+}, 60 * 60 * 1000 * 0.5); // Every 23 hours keep alive the agent

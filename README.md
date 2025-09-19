@@ -342,6 +342,34 @@ All technical implementations for this module are included here.
 
   - [**Swap Tokens**](./kaia-functions/kaia-swap-tokens.js)
 
+## 🌾 Yield Farming
+
+Stake your KAIA tokens to earn **DES (DeSmondToken)** rewards. Simple farming with flexible deposits and withdrawals.
+
+<img src="./Images/yield1.png" width="32%"/> <img src="./Images/yield2.png" width="32%"/> <img src="./Images/yield3.png" width="32%"/>
+
+### How It Works
+
+1. **Deposit KAIA**: Stake any amount to start earning
+2. **Earn DES**: Rewards accumulate automatically over time  
+3. **Claim Anytime**: Withdraw rewards or principal whenever you want
+
+Your rewards are calculated based on how much KAIA you deposit and how long you keep it staked. The longer you farm, the more DES tokens you earn.
+
+### Key Features
+
+- **No Lock-up Period**: Withdraw your KAIA anytime
+- **Continuous Rewards**: DES tokens earned
+- **Emergency Safety**: Protected withdrawals during system maintenance
+- **DeSmond Integration**: Manage your farm through AI chat
+
+All technical implementations for this module are included here.
+
+  - [**YieldFarm Contract**](./contracts/yieldfarm.sol)
+  - [**DeSmondToken Contract**](./contracts/DeSmondToken.sol)
+  - [**YieldFarm Interface**](./contracts/IYieldFarm.sol)
+  - [**DeSmondToken Interface**](./contracts/IDeSmondToken.sol)
+
 ## 🤖 AI Agent (DeSmond)
 
 Meet **DeSmond**, your personal crypto assistant who speaks human, not blockchain jargon. Built with **Langchain**, DeSmond turns complex wallet operations into simple conversations. Just tell him what you want to do with your money, and he'll handle the technical details.
@@ -352,16 +380,27 @@ Meet **DeSmond**, your personal crypto assistant who speaks human, not blockchai
 
 DeSmond is smart enough to understand context and intent, then choose the right action for your request. Here's what he can help you with:
 
-  - **`transfer_tokens`**: Facilitates token transfers on the Kaia Mainnet.
-  - **`swap_tokens`**: Enables users to exchange one token for another on Kaia using Li.Fi's routing.
-  - **`get_balance_kaia`**: Retrieves a user's current token balance on Kaia.
-  - **`list_of_tools`**: Informs the user about DeSmond's capabilities.
-  - **`fallback`**: Provides a friendly, conversational response when a user's intent is unclear.
+**Core Wallet Functions:**
+  - **`get_balance_kaia`**: Retrieves your current token balance for any token on Kaia Mainnet
+  - **`transfer_tokens`**: Facilitates token transfers on the Kaia Mainnet
+  - **`swap_tokens`**: Enables token swaps on Kaia using Li.Fi's routing
+
+**Yield Farming Functions:**
+  - **`get_yield_balance`**: Shows your currently deposited KAIA balance in the yield farm
+  - **`get_pending_rewards`**: Displays your unclaimed DES token rewards
+  - **`yield_kaia`**: Deposits KAIA tokens into the yield farm to start earning
+  - **`withdraw_kaia`**: Withdraws your deposited KAIA from the yield farm
+  - **`withdraw_rewards`**: Claims your earned DES token rewards
+  - **`get_yield_info`**: Provides information about yield farming capabilities
+
+**Utility Functions:**
+  - **`fund_kast_card`**: Transfers USDT from Kaia to your MetaMask Card on Arbitrum
+  - **`list_of_tools`**: Shows all available DeSmond capabilities
+  - **`fallback`**: Provides friendly responses when your intent needs clarification
 
 All technical implementations for this module are included here.
 
-  - [**Agent Code Snippets**](./agent/index.js)
-  - [**Swap Tokens**](./kaia-functions/kaia-swap-tokens.js)
+  - [**Agent Code**](./agent/index.js)
 
 ### Special Methods:
 
@@ -411,10 +450,9 @@ const fundKastCard = tool(
 
 All technical implementations for this module are included here.
 
-  - [**Agent Code Snippets**](./agent/index.js)
+  - [**Agent Code**](./agent/index.js)
   - [**Fund KAST Card**](./kaia-functions/kaia-usdt-arbitrum.js)
 
 # Korea <> Effisend:
-
 
 <img src="./Images/korea-team.png"/>
