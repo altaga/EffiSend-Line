@@ -306,70 +306,6 @@ All technical implementations for this module are included here.
   - [**Create or Fetch Account**](./kaia-functions/kaia-fetch-or-create.js)
   - [**Claim Rewards**](./kaia-functions/kaia-claim.js)
 
-## 🔄 Swap Tokens
-
-EffiSend integrates with Li.Fi to provide seamless token swapping directly within the platform. Users can easily exchange between different tokens on Kaia—whether converting KAIA to USDT for payments or diversifying their portfolio across supported assets.
-
-Our swap functionality supports major tokens on Kaia including KAIA, USDT, WBTC, WETH, and other popular assets. The system automatically handles token approvals when needed and provides real-time quotes to ensure users get the best rates available.
-
-### Key Features:
-
-- **Automatic Routing**: Li.Fi finds the most efficient swap routes
-- **Smart Approvals**: Handles ERC20 token approvals automatically  
-- **Real-time Quotes**: Always shows current market rates
-- **Transaction Tracking**: Full visibility with Kaia explorer links
-
-### Swap Process Snippet:
-
-```javascript
-// Get quote for token swap
-const quote = await getQuote({
-  fromChain: chainId,
-  toChain: chainId,
-  fromAmount: parseUnits(amount, tokenFrom.decimals),
-  fromToken: tokenFrom.address,
-  toToken: tokenTo.address,
-  fromAddress: userAddress,
-  toAddress: userAddress
-});
-
-// Execute the swap
-const route = convertQuoteToRoute(quote);
-const tx = await wallet.sendTransaction(route.steps[0].transactionRequest);
-```
-
-All technical implementations for this module are included here.
-
-  - [**Swap Tokens**](./kaia-functions/kaia-swap-tokens.js)
-
-## 🌾 Yield Farming
-
-Stake your KAIA tokens to earn **DES (DeSmondToken)** rewards. Simple farming with flexible deposits and withdrawals.
-
-<img src="./Images/yield1.png" width="32%"/> <img src="./Images/yield2.png" width="32%"/> <img src="./Images/yield3.png" width="32%"/>
-
-### How It Works
-
-1. **Deposit KAIA**: Stake any amount to start earning
-2. **Earn DES**: Rewards accumulate automatically over time  
-3. **Claim Anytime**: Withdraw rewards or principal whenever you want
-
-Your rewards are calculated based on how much KAIA you deposit and how long you keep it staked. The longer you farm, the more DES tokens you earn.
-
-### Key Features
-
-- **No Lock-up Period**: Withdraw your KAIA anytime
-- **Continuous Rewards**: DES tokens earned
-- **Emergency Safety**: Protected withdrawals during system maintenance
-- **DeSmond Integration**: Manage your farm through AI chat
-
-All technical implementations for this module are included here.
-
-  - [**YieldFarm Contract**](./contracts/yieldfarm.sol)
-  - [**DeSmondToken Contract**](./contracts/DeSmondToken.sol)
-  - [**YieldFarm Interface**](./contracts/IYieldFarm.sol)
-  - [**DeSmondToken Interface**](./contracts/IDeSmondToken.sol)
-
 ## 🤖 AI Agent (DeSmond)
 
 Meet **DeSmond**, your personal crypto assistant who speaks human, not blockchain jargon. Built with **Langchain**, DeSmond turns complex wallet operations into simple conversations. Just tell him what you want to do with your money, and he'll handle the technical details.
@@ -452,6 +388,70 @@ All technical implementations for this module are included here.
 
   - [**Agent Code**](./agent/index.js)
   - [**Fund KAST Card**](./kaia-functions/kaia-usdt-arbitrum.js)
+
+## 🔄 Swap Tokens
+
+EffiSend integrates with Li.Fi to provide seamless token swapping directly within the platform. Users can easily exchange between different tokens on Kaia—whether converting KAIA to USDT for payments or diversifying their portfolio across supported assets.
+
+Our swap functionality supports major tokens on Kaia including KAIA, USDT, WBTC, WETH, and other popular assets. The system automatically handles token approvals when needed and provides real-time quotes to ensure users get the best rates available.
+
+### Key Features:
+
+- **Automatic Routing**: Li.Fi finds the most efficient swap routes
+- **Smart Approvals**: Handles ERC20 token approvals automatically  
+- **Real-time Quotes**: Always shows current market rates
+- **Transaction Tracking**: Full visibility with Kaia explorer links
+
+### Swap Process Snippet:
+
+```javascript
+// Get quote for token swap
+const quote = await getQuote({
+  fromChain: chainId,
+  toChain: chainId,
+  fromAmount: parseUnits(amount, tokenFrom.decimals),
+  fromToken: tokenFrom.address,
+  toToken: tokenTo.address,
+  fromAddress: userAddress,
+  toAddress: userAddress
+});
+
+// Execute the swap
+const route = convertQuoteToRoute(quote);
+const tx = await wallet.sendTransaction(route.steps[0].transactionRequest);
+```
+
+All technical implementations for this module are included here.
+
+  - [**Swap Tokens**](./kaia-functions/kaia-swap-tokens.js)
+
+## 🌾 Yield Farming
+
+Stake your KAIA tokens to earn **DES (DeSmondToken)** rewards. Simple farming with flexible deposits and withdrawals.
+
+<img src="./Images/yield1.png" width="32%"/> <img src="./Images/yield2.png" width="32%"/> <img src="./Images/yield3.png" width="32%"/>
+
+### How It Works
+
+1. **Deposit KAIA**: Stake any amount to start earning
+2. **Earn DES**: Rewards accumulate automatically over time  
+3. **Claim Anytime**: Withdraw rewards or principal whenever you want
+
+Your rewards are calculated based on how much KAIA you deposit and how long you keep it staked. The longer you farm, the more DES tokens you earn.
+
+### Key Features
+
+- **No Lock-up Period**: Withdraw your KAIA anytime
+- **Continuous Rewards**: DES tokens earned
+- **Emergency Safety**: Protected withdrawals during system maintenance
+- **DeSmond Integration**: Manage your farm through AI chat
+
+All technical implementations for this module are included here.
+
+  - [**YieldFarm Contract**](./contracts/yieldfarm.sol)
+  - [**DeSmondToken Contract**](./contracts/DeSmondToken.sol)
+  - [**YieldFarm Interface**](./contracts/IYieldFarm.sol)
+  - [**DeSmondToken Interface**](./contracts/IDeSmondToken.sol)
 
 # Korea <> Effisend:
 
