@@ -106,7 +106,7 @@ export default function MainComponent() {
                 : GlobalStyles.selectorText
             }
           >
-            EffiSend ID
+            Effisend ID
           </Text>
         </Pressable>
         <Pressable

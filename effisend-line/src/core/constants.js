@@ -4,6 +4,7 @@ import KAIA from "../assets/logos/kaia.png";
 import USDC from "../assets/logos/usdc.png";
 import USDT from "../assets/logos/usdt.png";
 import WETH from "../assets/logos/weth.png";
+import DES from "../assets/logos/des.png";
 
 const normalizeFontSize = (size) => {
   let { width, height } = Dimensions.get("window");
@@ -36,6 +37,9 @@ export const iconsBlockchain = {
   ),
   kaia: (
     <Image source={KAIA} style={{ width: w, height: h, borderRadius: 10 }} />
+  ),
+  des: (
+    <Image source={DES} style={{ width: w, height: h, borderRadius: 10 }} />
   ),
 };
 
@@ -108,6 +112,15 @@ export const blockchain = {
       decimals: 18,
       icon: iconsBlockchain.weth,
       coingecko: "weth",
+    },
+    {
+      name: "DeSmond Token",
+      color: "#4286F5",
+      symbol: "DES",
+      address: "0x06ADf942eB4A52081c360e350D6CD533e39A7f50",
+      decimals: 18,
+      icon: iconsBlockchain.des,
+      coingecko: "shiba-inu",
     },
   ],
 };

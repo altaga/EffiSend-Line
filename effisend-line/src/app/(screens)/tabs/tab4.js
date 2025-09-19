@@ -53,8 +53,8 @@ export default function Tab4() {
 
   function responseModifier(response) {
     let temp = response;
-    if (temp["last_tool"] === "transfer_to_multiple_spei") {
-      temp.message = "All CLABE accounts received the payment successfully.";
+    if (temp["last_tool"] === "get_yield_info") {
+      temp.message = "Yes indeed! Effisend has a farm, where you can get 10.5% Yield of the DES token, by depositing your Kaia token.";
     }
     return temp;
   }

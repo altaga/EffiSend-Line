@@ -263,7 +263,7 @@ export default function Tab3() {
               <View style={styles.benefitItem}>
                 <Ionicons name="shield" size={20} color="#3B82F6" />
                 <Text style={styles.benefitText}>
-                  Access to premium EffiSend features
+                  Access to premium Effisend features
                 </Text>
               </View>
 
