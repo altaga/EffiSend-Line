@@ -28,7 +28,7 @@ We're not just processing payments—we're building a trust-based ecosystem wher
 
 <hr>
 
-- **VIDEO DEMO YIELD:** [LINK](https://www.youtube.com/watch?v=IIvgoejg5BU)
+- **YIELD VIDEO DEMO:** [LINK](https://www.youtube.com/watch?v=IIvgoejg5BU)
 
 ## 🎯 Project Value & Justification
 
@@ -434,6 +434,8 @@ All technical implementations for this module are included here.
 Stake your KAIA tokens to earn **DES (DeSmondToken)** rewards. Simple farming with flexible deposits and withdrawals.
 
 <img src="./Images/yield1.png" width="32%"/> <img src="./Images/yield2.png" width="32%"/> <img src="./Images/yield3.png" width="32%"/>
+
+- **YIELD VIDEO DEMO:** [LINK](https://www.youtube.com/watch?v=IIvgoejg5BU)
 
 ### How It Works
 
