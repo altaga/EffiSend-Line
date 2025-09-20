@@ -8,22 +8,6 @@ EffiSend reimagines digital payments by combining the security of biometric auth
 
 We're not just processing payments—we're building a trust-based ecosystem where your verified identity becomes your gateway to seamless financial interactions and meaningful rewards, leveraging LINE's existing social infrastructure to bring Web3 payments to mainstream users who already trust and use LINE daily.
 
-## 🎯 Project Value & Justification
-
-**Enabling Face Payments within LINE represents a paradigm shift in digital finance accessibility.** 
-
-Traditional crypto payments require complex wallet management, private key security, and technical knowledge that creates barriers for mainstream adoption. EffiSend eliminates these friction points by introducing **biometric-authenticated payments directly within LINE**—the app millions of users already trust and use daily.
-
-### Why This Matters:
-
-- **Zero Learning Curve**: Users can make crypto payments using familiar LINE interface with just their face—no new apps, no wallet setup, no seed phrases to remember
-- **Instant Trust**: LINE's established reputation and user base provides immediate credibility for crypto transactions
-- **Biometric Security**: Face authentication offers stronger security than passwords while being more user-friendly than traditional wallet management
-- **Social Integration**: Payments become as natural as sending a LINE message, enabling peer-to-peer transactions within existing social contexts
-- **Mass Market Ready**: Transforms crypto from a niche technology into an accessible payment method for LINE's 95+ million users
-
-By bringing **Face Payments to LINE**, EffiSend bridges the gap between Web3 innovation and mainstream usability, making cryptocurrency payments as intuitive as taking a selfie.
-
 ## 🔗 Fast Links
 - **LINE DAPP**: SCAN WITH YOUR LINE APP
 <p align="center">
@@ -41,6 +25,26 @@ By bringing **Face Payments to LINE**, EffiSend bridges the gap between Web3 inn
 <hr>
 
 - **VIDEO DEMO:** [LINK](https://www.youtube.com/watch?v=ipT9MxahQEk)
+
+<hr>
+
+- **VIDEO DEMO YIELD:** [LINK](https://www.youtube.com/watch?v=IIvgoejg5BU)
+
+## 🎯 Project Value & Justification
+
+**Enabling Face Payments within LINE represents a paradigm shift in digital finance accessibility.** 
+
+Traditional crypto payments require complex wallet management, private key security, and technical knowledge that creates barriers for mainstream adoption. EffiSend eliminates these friction points by introducing **biometric-authenticated payments directly within LINE**—the app millions of users already trust and use daily.
+
+### Why This Matters:
+
+- **Zero Learning Curve**: Users can make crypto payments using familiar LINE interface with just their face—no new apps, no wallet setup, no seed phrases to remember
+- **Instant Trust**: LINE's established reputation and user base provides immediate credibility for crypto transactions
+- **Biometric Security**: Face authentication offers stronger security than passwords while being more user-friendly than traditional wallet management
+- **Social Integration**: Payments become as natural as sending a LINE message, enabling peer-to-peer transactions within existing social contexts
+- **Mass Market Ready**: Transforms crypto from a niche technology into an accessible payment method for LINE's 95+ million users
+
+By bringing **Face Payments to LINE**, EffiSend bridges the gap between Web3 innovation and mainstream usability, making cryptocurrency payments as intuitive as taking a selfie.
 
 ## ⚙️ System Architecture & Tech Stack
 
