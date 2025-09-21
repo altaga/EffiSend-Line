@@ -31,7 +31,9 @@ We're not just processing payments—we're building a trust-based ecosystem wher
 - **YIELD VIDEO DEMO:** [LINK](https://www.youtube.com/watch?v=IIvgoejg5BU)
 
 <hr>
+
 - **Pitch Deck:** [LINK](https://docsend.com/v/c8qkn/effisend-pitch-deck)
+  
 <hr>
 
 - **CONTRACTS LISTED:**:
