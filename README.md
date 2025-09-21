@@ -30,6 +30,17 @@ We're not just processing payments—we're building a trust-based ecosystem wher
 
 - **YIELD VIDEO DEMO:** [LINK](https://www.youtube.com/watch?v=IIvgoejg5BU)
 
+<hr>
+
+- **CONTRACTS LISTED:**:
+  - BatchBalances: [LINK](https://www.kaiascan.io/address/0xba9b522EFb2E9dffA0aD7fdEB6A702A5B116dBd7)
+  - YieldFarm: [LINK](https://www.kaiascan.io/address/0xebb9e25b4394378a1981c56b2762c7380cd75db9)
+  - DeSmondToken: [LINK](https://www.kaiascan.io/address/0x06adf942eb4a52081c360e350d6cd533e39a7f50)
+
+<hr>
+
+- **PITCH DECK:** [LINK](pending...)
+
 ## 🎯 Project Value & Justification
 
 **Enabling Face Payments within LINE represents a paradigm shift in digital finance accessibility.** 
